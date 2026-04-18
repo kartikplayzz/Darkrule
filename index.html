@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DarkRule SMP — Recording This Monday!</title>
+
+<meta property="og:title" content="⚔️ DarkRule SMP — Recording Starts Monday!">
+<meta property="og:description" content="Bhishma Rajput ka official announcement. Monday 20 April se SMP recording shuru ho rahi hai. Sabhi members present rahein!">
+<meta name="theme-color" content="#ff2020">
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Black+Han+Sans&family=Noto+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --red: #ff2020;
+  --red2: #990000;
+  --gold: #ffd700;
+  --dark: #080808;
+  --dark2: #111;
+  --dark3: #1a1a1a;
+  --white: #f0f0f0;
+  --muted: #777;
+}
+
+html, body {
+  min-height: 100vh;
+  background: var(--dark);
+  font-family: 'Noto Sans', sans-serif;
+  color: var(--white);
+  overflow-x: hidden;
+}
+
+/* BG */
+.bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+.bg-grid {
+  position: absolute;
+  inset: -50%;
+  background-image:
+    linear-gradient(rgba(255,32,32,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,32,32,.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+  animation: gridMove 24s linear infinite;
+}
+@keyframes gridMove { to { transform: translate(56px, 56px); } }
+.bg-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 80% at 50% 50%, transparent 20%, #080808 100%);
+}
+.bg-glow {
+  position: absolute;
+  width: 700px; height: 400px;
+  border-radius: 50%;
+  top: -150px; left: 50%;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse, #ff202012 0%, transparent 70%);
+  animation: glowPulse 5s ease-in-out infinite;
+}
+@keyframes glowPulse {
+  0%,100% { opacity: .5; transform: translateX(-50%) scaleX(1); }
+  50%      { opacity: 1;  transform: translateX(-50%) scaleX(1.15); }
+}
+
+/* sparks */
+.spark {
+  position: absolute;
+  border-radius: 50%;
+  animation: sparkUp linear infinite;
+  opacity: 0;
+}
+@keyframes sparkUp {
+  0%   { opacity: 0; transform: translateY(0) translateX(0) scale(0); }
+  15%  { opacity: 1; transform: scale(1); }
+  85%  { opacity: .4; }
+  100% { opacity: 0; transform: translateY(-75vh) translateX(var(--dx)) scale(.3); }
+}
+
+/* WRAPPER */
+.wrapper {
+  position: relative;
+  z-index: 10;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 52px 20px 60px;
+}
+
+/* TOP LABEL */
+.top-label {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 52px;
+  animation: fadeDown .7s both;
+}
+.tl-line { width: 50px; height: 1px; background: linear-gradient(90deg, transparent, #ff202066); }
+.tl-line.r { background: linear-gradient(90deg, #ff202066, transparent); }
+.tl-text {
+  font-size: 10px;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--red);
+  font-weight: 700;
+}
+
+/* SERVER NAME */
+.server-name-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  animation: fadeDown .8s .1s both;
+}
+.sword { font-size: 44px; animation: sway 3.5s ease-in-out infinite; filter: drop-shadow(0 0 18px #ff2020); }
+@keyframes sway {
+  0%,100% { transform: rotate(-6deg) translateY(0); }
+  50%      { transform: rotate(6deg) translateY(-8px); }
+}
+.sname {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(60px, 16vw, 120px);
+  letter-spacing: 5px;
+  line-height: .88;
+  text-align: center;
+  background: linear-gradient(175deg, #ffffff 0%, #ff4444 45%, #7a0000 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 24px #ff202044);
+}
+.ssub {
+  font-size: 12px;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+/* DIVIDER */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: min(560px, 90%);
+  margin: 28px auto 44px;
+  animation: fadeIn .9s .3s both;
+}
+.dl { flex: 1; height: 1px; }
+.dl.l { background: linear-gradient(90deg, transparent, #ffffff18); }
+.dl.r { background: linear-gradient(90deg, #ffffff18, transparent); }
+.dd { width: 7px; height: 7px; background: var(--red); transform: rotate(45deg); box-shadow: 0 0 10px var(--red); }
+
+/* MAIN CARD */
+.card {
+  width: min(640px, 100%);
+  background: linear-gradient(145deg, #160000 0%, #0f0000 40%, #0a0a0a 100%);
+  border: 1px solid #ff202028;
+  border-top: 2px solid var(--red);
+  border-radius: 3px;
+  padding: 38px 42px 36px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 60px #ff202014, 0 24px 80px #00000077;
+  animation: cardIn .9s .2s both;
+  margin-bottom: 30px;
+}
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, #ff202010 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* corners */
+.co { position: absolute; width: 18px; height: 18px; border-color: #ff202044; border-style: solid; }
+.co.tl { top: 10px; left: 10px; border-width: 1px 0 0 1px; }
+.co.tr { top: 10px; right: 10px; border-width: 1px 1px 0 0; }
+.co.bl { bottom: 10px; left: 10px; border-width: 0 0 1px 1px; }
+.co.br { bottom: 10px; right: 10px; border-width: 0 1px 1px 0; }
+
+/* from row */
+.from-row {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: 26px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid #ffffff0d;
+}
+.av {
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #cc0000, #550000);
+  border: 1px solid #ff202055;
+  box-shadow: 0 0 14px #ff202044;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  color: white;
+  flex-shrink: 0;
+}
+.from-name {
+  font-family: 'Black Han Sans', sans-serif;
+  font-size: 17px;
+  color: var(--white);
+  letter-spacing: .5px;
+}
+.from-role {
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--red);
+  font-weight: 700;
+  margin-top: 3px;
+}
+
+/* heading */
+.heading {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(30px, 7vw, 52px);
+  letter-spacing: 2px;
+  color: var(--gold);
+  filter: drop-shadow(0 0 8px #ffd70055);
+  line-height: 1;
+  margin-bottom: 5px;
+}
+.heading-sub {
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 26px;
+}
+
+/* message */
+.msg {
+  font-size: clamp(14px, 2.4vw, 15.5px);
+  line-height: 1.85;
+  color: #bbbbbb;
+  margin-bottom: 30px;
+}
+.msg .hi  { color: var(--gold); font-weight: 700; }
+.msg .rd  { color: var(--red);  font-weight: 700; }
+.msg .wh  { color: var(--white); font-weight: 600; }
+
+/* info grid */
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.chip {
+  background: #ffffff06;
+  border: 1px solid #ffffff0e;
+  border-radius: 3px;
+  padding: 13px 15px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+.chip-ico { font-size: 20px; flex-shrink: 0; }
+.chip-lbl { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); font-weight: 700; margin-bottom: 4px; }
+.chip-val { font-family: 'Black Han Sans', sans-serif; font-size: 14px; color: var(--white); letter-spacing: .5px; }
+.chip-val.gold  { color: var(--gold); }
+.chip-val.green { color: #57f287; }
+.chip-val.red   { color: var(--red); }
+
+/* COUNTDOWN */
+.cd-wrap {
+  width: min(640px, 100%);
+  text-align: center;
+  animation: fadeIn 1s .5s both;
+  margin-bottom: 44px;
+}
+.cd-label {
+  font-size: 10px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 18px;
+}
+.cd {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.cd-block { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.cd-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(44px, 12vw, 80px);
+  line-height: 1;
+  background: linear-gradient(180deg, #ffffff 0%, #666 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  min-width: 80px;
+  text-align: center;
+}
+.cd-unit { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+.cd-colon {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 56px;
+  color: #ff202055;
+  line-height: 1;
+  margin-top: 6px;
+}
+
+/* live badge */
+.live-badge {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--red);
+  color: white;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 3px;
+  padding: 12px 28px;
+  border-radius: 3px;
+  box-shadow: 0 0 30px #ff2020aa;
+  animation: livePulse 1s ease-in-out infinite alternate;
+}
+@keyframes livePulse { from { box-shadow: 0 0 20px #ff2020aa; } to { box-shadow: 0 0 50px #ff2020ff; } }
+
+/* footer */
+.footer {
+  text-align: center;
+  animation: fadeIn 1s .7s both;
+}
+.footer p { font-size: 11px; color: var(--muted); letter-spacing: 2px; }
+.footer span { color: var(--red); }
+
+/* animations */
+@keyframes fadeDown { from { opacity:0; transform:translateY(-16px); } to { opacity:1; transform:translateY(0); } }
+@keyframes fadeIn   { from { opacity:0; } to { opacity:1; } }
+
+@media (max-width: 480px) {
+  .card { padding: 28px 20px; }
+  .info-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="bg">
+  <div class="bg-grid"></div>
+  <div class="bg-vignette"></div>
+  <div class="bg-glow"></div>
+</div>
+
+<div class="wrapper">
+
+  <div class="top-label">
+    <div class="tl-line"></div>
+    <span class="tl-text">Official Announcement</span>
+    <div class="tl-line r"></div>
+  </div>
+
+  <div class="server-name-wrap">
+    <div class="sword">⚔️</div>
+    <div class="sname">DarkRule<br>SMP</div>
+    <div class="ssub">Survival Multiplayer</div>
+  </div>
+
+  <div class="divider">
+    <div class="dl l"></div>
+    <div class="dd"></div>
+    <div class="dl r"></div>
+  </div>
+
+  <div class="card">
+    <div class="co tl"></div><div class="co tr"></div>
+    <div class="co bl"></div><div class="co br"></div>
+
+    <!-- From -->
+    <div class="from-row">
+      <div class="av">B</div>
+      <div>
+        <div class="from-name">Bhishma Rajput</div>
+        <div class="from-role">⚔ Admin • DarkRule SMP</div>
+      </div>
+    </div>
+
+    <!-- Heading -->
+    <div class="heading">🎬 Recording Shuru Ho Rahi Hai!</div>
+    <div class="heading-sub">SMP Recording • Monday 20 April 2026</div>
+
+    <!-- Message -->
+    <div class="msg">
+      Sunno <span class="wh">DarkRule SMP</span> ke sabhi members —<br><br>
+      <span class="hi">Monday 20 April</span> se hamare SMP ki <span class="hi">official recording shuru</span> ho rahi hai! 🔥
+      Yeh hamare YouTube channel ke liye hoga — toh jo bhi <span class="rd">recording mein absent rahega</span>,
+      woh video mein nazar nahi aayega.<br><br>
+      <span class="wh">Sabhi ko time pe present rehna hai</span> — koi excuse accept nahi hoga. 
+      Apni <span class="hi">Minecraft world ready rakho</span>, base set karo, aur tayaar raho! ⛏️<br><br>
+      See you all on Monday. <span class="wh">Jai DarkRule! 🗡️</span>
+    </div>
+
+    <!-- Chips -->
+    <div class="info-grid">
+      <div class="chip">
+        <span class="chip-ico">🎬</span>
+        <div>
+          <div class="chip-lbl">Recording Date</div>
+          <div class="chip-val gold">Monday, 20 April</div>
+        </div>
+      </div>
+      <div class="chip">
+        <span class="chip-ico">📢</span>
+        <div>
+          <div class="chip-lbl">Announced</div>
+          <div class="chip-val green">Sunday, 19 April</div>
+        </div>
+      </div>
+      <div class="chip">
+        <span class="chip-ico">🎮</span>
+        <div>
+          <div class="chip-lbl">Server</div>
+          <div class="chip-val">DarkRule SMP</div>
+        </div>
+      </div>
+      <div class="chip">
+        <span class="chip-ico">✅</span>
+        <div>
+          <div class="chip-lbl">Attendance</div>
+          <div class="chip-val red">Sabhi Present Rahein!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Countdown -->
+  <div class="cd-wrap">
+    <div class="cd-label" id="cd-label">⏳ Recording shuru hone mein</div>
+    <div class="cd" id="cd-display">
+      <div class="cd-block">
+        <div class="cd-num" id="cd-d">00</div>
+        <div class="cd-unit">Days</div>
+      </div>
+      <div class="cd-colon">:</div>
+      <div class="cd-block">
+        <div class="cd-num" id="cd-h">00</div>
+        <div class="cd-unit">Hours</div>
+      </div>
+      <div class="cd-colon">:</div>
+      <div class="cd-block">
+        <div class="cd-num" id="cd-m">00</div>
+        <div class="cd-unit">Minutes</div>
+      </div>
+      <div class="cd-colon">:</div>
+      <div class="cd-block">
+        <div class="cd-num" id="cd-s">00</div>
+        <div class="cd-unit">Seconds</div>
+      </div>
+    </div>
+    <div class="live-badge" id="live-badge">🔴 Recording Day Is Here!</div>
+  </div>
+
+  <div class="footer">
+    <p>⚔ <span>DarkRule SMP</span> &nbsp;•&nbsp; Announced by <span>Bhishma Rajput</span> &nbsp;•&nbsp; 19 April 2026</p>
+  </div>
+
+</div>
+
+<script>
+// Sparks
+const bg = document.querySelector('.bg');
+for (let i = 0; i < 35; i++) {
+  const s = document.createElement('div');
+  s.className = 'spark';
+  const size = Math.random() * 3 + 1;
+  s.style.cssText = `
+    width:${size}px; height:${size}px;
+    left:${Math.random()*100}%; bottom:0;
+    --dx:${(Math.random()-.5)*180}px;
+    animation-duration:${6+Math.random()*9}s;
+    animation-delay:${Math.random()*9}s;
+    background:${Math.random()>.5?'#ffd700':'#ff3333'};
+  `;
+  bg.appendChild(s);
+}
+
+// Countdown to Monday 20 April 2026 12:00 IST (noon — recording time)
+function tick() {
+  const target = new Date('2026-04-20T12:00:00+05:30');
+  const now    = new Date();
+  const diff   = target - now;
+
+  if (diff <= 0) {
+    document.getElementById('cd-display').style.display = 'none';
+    document.getElementById('cd-label').style.display   = 'none';
+    document.getElementById('live-badge').style.display = 'flex';
+    return;
+  }
+
+  const d = Math.floor(diff / 86400000);
+  const h = Math.floor((diff % 86400000) / 3600000);
+  const m = Math.floor((diff % 3600000)  / 60000);
+  const s = Math.floor((diff % 60000)    / 1000);
+
+  document.getElementById('cd-d').textContent = String(d).padStart(2,'0');
+  document.getElementById('cd-h').textContent = String(h).padStart(2,'0');
+  document.getElementById('cd-m').textContent = String(m).padStart(2,'0');
+  document.getElementById('cd-s').textContent = String(s).padStart(2,'0');
+}
+tick();
+setInterval(tick, 1000);
+</script>
+</body>
+</html>
